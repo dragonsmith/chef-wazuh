@@ -1,0 +1,44 @@
+<syscheck>
+    <disabled><%= @disabled %></disabled>
+
+    <!-- Frequency that syscheck is executed default every 12 hours -->
+    <frequency><%= @frequency %></frequency>
+
+    <scan_on_start><%= @scan_on_start %></scan_on_start>
+
+    <!-- Generate alert when new file detected -->
+    <alert_new_files><%= @alert_new_files %></alert_new_files>
+
+    <!-- Don't ignore files that change more than 3 times -->
+    <auto_ignore><%= @auto_ignore %></auto_ignore>
+
+    <%- if @prefilter_cmd && @prefilter_cmd != '' %>
+    <prefilter_cmd><%= @prefilter_cmd %></prefilter_cmd>
+    <%- end %>
+
+    <%- @scan_day.each do |item| %>
+    <scan_day><%= item %></scan_day>
+    <%- end %>
+
+    <%- if @scan_time && @scan_time != '' %>
+    <!-- Time to run the scans. Times may be represented as 21pm or 8:30. -->
+    <scan_time><%= @scan_time %></scan_time>
+    <%- end %>
+
+    <!-- Directories to check  (perform all possible verifications) -->
+    <%- @directories.each do |dir| %>
+    <directories check_all="yes"><%= dir['paths'].join(',') %></directories>
+    <%- end %>
+
+    <!-- Files/directories to ignore -->
+    <%- @ignore.each do |item| %>
+    <ignore><%= item %></ignore>
+    <%- end %>
+
+    <!-- Files/directories to ignore diff creation-->
+    <%- @nodiff.each do |item| %>
+    <nodiff><%= item %></nodiff>
+    <%- end %>
+
+    <skip_nfs><%= @skip_nfs %></skip_nfs>
+  </syscheck>

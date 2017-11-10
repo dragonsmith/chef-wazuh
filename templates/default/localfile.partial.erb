@@ -1,0 +1,22 @@
+  <%-
+  attrs = %w(
+    location
+    command
+    alias
+    frequency
+    only-future-events
+    query
+    log_format
+  )
+
+  @files.each do |log| %>
+  <localfile>
+<%-
+    log.each do |key, value|
+      next unless attrs.include?(key)
+    %>
+    <<%= key %>><%= value %></<%= key %>>
+    <%- end %>
+  </localfile>
+
+<%- end %>

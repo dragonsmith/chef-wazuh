@@ -1,0 +1,17 @@
+  <auth>
+    <disabled><%= @disabled %></disabled>
+    <port><%= @port %></port>
+    <use_source_ip><%= @use_source_ip %></use_source_ip>
+    <force_insert><%= @force_insert %></force_insert>
+    <force_time><%= @force_time %></force_time>
+    <purge><%= @purge %></purge>
+    <use_password><%= @use_password %></use_password>
+<%- if @ssl_agent_ca && @ssl_agent_ca != '' %>    <ssl_agent_ca><%= @ssl_agent_ca %></ssl_agent_ca>
+<% end -%>
+<%- if @ssl_manager_cert && @ssl_manager_cert != '' %>    <ssl_manager_cert><%= @ssl_manager_cert %></ssl_manager_cert>
+<% end -%>
+<%- if @ssl_manager_key && @ssl_manager_key != '' %>    <ssl_manager_key><%= @ssl_manager_key %></ssl_manager_key>
+<% end -%>
+    <ssl_auto_negotiate><%= @ssl_auto_negotiate %></ssl_auto_negotiate>
+    <ssl_verify_host><%= @ssl_verify_host %></ssl_verify_host>
+  </auth>

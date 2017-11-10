@@ -1,0 +1,65 @@
+
+var config = {};
+
+// Basic configuration
+
+// Path
+config.ossec_path = "<%= @ossec_path %>";
+// The host to bind the API to.
+config.host = "<%= @listen_on %>";
+// TCP Port used by the API.
+config.port = "<%= @port %>";
+// Use HTTP protocol over TLS/SSL. Values: yes, no.
+config.https = "<%= @https %>";
+// Use HTTP authentication. Values: yes, no.
+config.basic_auth = "<%= @basic_auth %>";
+//In case the API run behind a proxy server, turn to "yes" this feature. Values: yes, no.
+config.BehindProxyServer = "<%= @BehindProxyServer %>";
+
+<% if @https == 'yes' -%>
+// HTTPS Certificates
+config.https_key = "<%= @https_key %>"
+config.https_cert = "<%= @https_cert %>"
+config.https_use_ca = "<%= @https_use_ca %>"
+<% if @https_use_ca == 'yes' &&
+      @https_ca &&
+      @https_ca != ''
+-%>
+config.https_ca = "<%= @https_ca %>"
+<% end -%>
+<% end -%>
+
+// Advanced configuration
+
+// Values for API log: disabled, info, warning, error, debug (each level includes the previous level).
+config.logs = "<%= @logs %>";
+// Cross-origin resource sharing. Values: yes, no.
+config.cors = "<%= @cors %>";
+// Cache (time in milliseconds)
+config.cache_enabled = "<%= @cache_enabled %>";
+config.cache_debug = "<%= @cache_debug %>";
+config.cache_time = "<%= @cache_time %>";
+// Log path
+config.log_path = "<%= @log_path %>";
+// Python
+config.python = [
+    // Default installation
+    {
+        bin: "python",
+        lib: ""
+    },
+    // Python 3
+    {
+        bin: "python3",
+        lib: ""
+    },
+    // Package 'python27' for CentOS 6
+    {
+        bin: "/opt/rh/python27/root/usr/bin/python",
+        lib: "/opt/rh/python27/root/usr/lib64"
+    }
+];
+// Shared library path
+config.ld_library_path = "<%= @ld_library_path %>"
+
+module.exports = config;

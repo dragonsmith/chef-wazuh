@@ -1,0 +1,25 @@
+  <rootcheck>
+    <base_directory><%= @base_directory %></base_directory>
+
+    <disabled><%= @disabled %></disabled>
+    <check_unixaudit><%= @check_unixaudit %></check_unixaudit>
+    <check_files><%= @check_files %></check_files>
+    <check_trojans><%= @check_trojans %></check_trojans>
+    <check_dev><%= @check_dev %></check_dev>
+    <check_sys><%= @check_sys %></check_sys>
+    <check_pids><%= @check_pids %></check_pids>
+    <check_ports><%= @check_ports %></check_ports>
+    <check_if><%= @check_if %></check_if>
+
+    <!-- Frequency that rootcheck is executed - every 12 hours -->
+    <frequency><%= @frequency %></frequency>
+
+    <rootkit_files><%= @rootkit_files %></rootkit_files>
+    <rootkit_trojans><%= @rootkit_trojans %></rootkit_trojans>
+
+    <%- @system_audit.each do |filename| %>
+    <system_audit><%= filename %></system_audit>
+    <%- end %>
+
+    <skip_nfs><%= @skip_nfs %></skip_nfs>
+  </rootcheck>

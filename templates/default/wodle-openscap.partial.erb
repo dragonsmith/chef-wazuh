@@ -1,0 +1,20 @@
+  <wodle name="open-scap">
+    <disabled><%= @disabled %></disabled>
+    <timeout><%= @timeout %></timeout>
+    <interval><%= @interval %></interval>
+    <scan-on-start><%= @scan_on_start %></scan-on-start>
+
+    <%- @content.each do |item| %>
+    <%- if item.keys & %w(timeout xccdf-id oval-id datastream-id cpe profile) %>
+    <content type="<%= item['type']%>" path="<%= item['path']%>">
+        <%- item.each do |key, value| %>
+        <%- next if %w(type path).include?(key) %>
+        <<%= key %>><%= value %></<%= key %>>
+        <%- end %>
+    </content>
+    <%- else %>
+    <content type="<%= item['type']%>" path="<%= item['path']%>"/>
+    <%- end %>
+    <%- end %>
+
+  </wodle>
